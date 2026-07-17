@@ -302,6 +302,47 @@ Item { // Bar content region
                             id: notificationUnreadCount
                         }
                     }
+                    //keep awake
+                    Revealer {
+                        reveal: Idle.inhibit
+                        Layout.fillHeight: true
+                        Layout.rightMargin: reveal ? indicatorsRowLayout.realSpacing : 0
+                        Behavior on Layout.rightMargin {
+                            animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                        }
+                        MaterialSymbol {
+                            text: "coffee"
+                            iconSize: Appearance.font.pixelSize.larger
+                            color: rightSidebarButton.colText
+                        }
+                    }
+                    //vpn
+                    Timer {
+                        interval: 5000
+                        repeat: true
+                        triggeredOnStart: true
+                        running: true
+                        onTriggered: warpCheckProcess.running = true
+                    }
+
+                    Process {
+                        id: warpCheckProcess
+                        command: ["bash", "-c", "warp-cli status 2>/dev/null | grep -q Connected"]
+                        onExited: (exitCode) => root.warpConnected = exitCode === 0
+                    }
+                    Revealer {
+                        reveal: root.warpConnected
+                        Layout.fillHeight: true
+                        Layout.rightMargin: reveal ? indicatorsRowLayout.realSpacing : 0
+                        Behavior on Layout.rightMargin {
+                            animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                        }
+                        MaterialSymbol {
+                            text: "cloud_lock"
+                            iconSize: Appearance.font.pixelSize.larger
+                            color: rightSidebarButton.colText
+                        }
+                    }
                     MaterialSymbol {
                         text: Network.materialSymbol
                         iconSize: Appearance.font.pixelSize.larger
