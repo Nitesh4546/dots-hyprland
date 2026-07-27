@@ -1,4 +1,15 @@
-### Lock Screen Media
-I utilized the PR #3462 using that i made some modifications so that the user can choose whether to have media controls on the lock screen or not. It pauses the media when the toggle is off and continues playing if the toggle is on and user can controls from the media controls.
+# Media Controls on Lock Screen
 
-<video controls src="lock-screen-media.mp4" title="Title"></video>
+Placed Media contorls on the lock screen. 
+Give user a toggle to turn it on and off.
+
+Property: "Allow media controls on the lock screen"
+<img width="1110" height="760" alt="image" src="https://github.com/user-attachments/assets/852208b4-6e57-4265-8e6a-8098ecc2c4c9" />
+
+## Uses: 
+- When the toggle is turned on: the media will continue to playing and there will be media controls when the user enters the lock screen.
+- When the toggle is turned off: the media will stop to playing
+
+## Demo
+https://github.com/user-attachments/assets/000ee016-1f36-4af9-9ce5-b70127ae8381
+
